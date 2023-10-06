@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "890972034116",
+    "project_id": "kytypablo-7bcf6",
+    "storage_bucket": "kytypablo-7bcf6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:890972034116:android:beda65a543c422a8fa9811",
+        "android_client_info": {
+          "package_name": "rfvi.pablobeltran.kytypablo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQse9Dkf3lBofy8Go80nf4T8MXjvPUqak"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

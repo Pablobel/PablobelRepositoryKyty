@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyDDURM2ROx32x9Fqvw9hvKbQroXdH9gBZk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>890972034116</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>rfvi.pablobeltran.kytypablo</string>
+	<key>PROJECT_ID</key>
+	<string>kytypablo-7bcf6</string>
+	<key>STORAGE_BUCKET</key>
+	<string>kytypablo-7bcf6.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:890972034116:ios:ce2fed6d4aaa33c4fa9811</string>
+</dict>
+</plist>
