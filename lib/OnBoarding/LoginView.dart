@@ -24,6 +24,11 @@ class LoginView extends StatelessWidget{
           obscureText: true,
         ),
       ),
+      Row(mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          TextButton(onPressed: () {}, child: Text("Aceptar"),),
+          TextButton(onPressed: (){}, child: Text("Registrar"),)
+        ],)
     ],);
     AppBar appBar = AppBar(
       title: const Text('Login'),
