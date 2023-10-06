@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'OnBoarding/LoginView.dart';
-
+import 'OnBoarding/RegisterView.dart';
 class KytyApp extends StatelessWidget{
 
 
@@ -9,6 +9,7 @@ class KytyApp extends StatelessWidget{
     MaterialApp materialApp=MaterialApp(title: "KyTy Miau!",
       routes: {
         '/loginview':(context) => LoginView(),
+        '/registerview':(context) => RegisterView(),
       },
       initialRoute: '/loginview',
     );

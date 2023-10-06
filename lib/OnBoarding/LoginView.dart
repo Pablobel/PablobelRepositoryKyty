@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
 class LoginView extends StatelessWidget{
+  late BuildContext _context;
+  void onClickRegistrar(){
+    Navigator.of(_context).pushNamed("/registerview");
+  }
   @override
   Widget build(BuildContext context) {
-
+    _context=context;
     Column columna = Column(children: [
       Text("Kyty Login",style: TextStyle(fontSize: 25)),
 
@@ -26,8 +30,8 @@ class LoginView extends StatelessWidget{
       ),
       Row(mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          TextButton(onPressed: () {}, child: Text("Aceptar"),),
-          TextButton(onPressed: (){}, child: Text("Registrar"),)
+          TextButton(onPressed:(){}, child: Text("Aceptar"),),
+          TextButton(onPressed: onClickRegistrar , child: Text("Registrar"),)
         ],)
     ],);
     AppBar appBar = AppBar(
