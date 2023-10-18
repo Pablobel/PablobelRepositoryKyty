@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 class RegisterView extends StatelessWidget{
   late BuildContext _context;
   void onClickCancelar(){
-    Navigator.of(_context).pushNamed("/registerview");
+    Navigator.of(_context).pushNamed("/loginview");
   }
   @override
   Widget build(BuildContext context) {
