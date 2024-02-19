@@ -1,3 +1,5 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 
 class LoginView extends StatelessWidget{
@@ -12,18 +14,17 @@ class LoginView extends StatelessWidget{
 
   void onClickAceptar() async {
     try {
-      final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: emailAddress,
-        password: password,
+      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailAddress,
+          password: password
       );
+      Navigator.of(_context).popAndPushNamed("/homeview");
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
-      } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
+      if (e.code == 'user-not-found') {
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        print('Wrong password provided for that user.');
       }
-    } catch (e) {
-      print(e);
     }
   }
 
