@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'Main/HomeView.dart';
 import 'OnBoarding/LoginView.dart';
 import 'OnBoarding/RegisterView.dart';
+import 'Splash/SplashView.dart';
 class KytyApp extends StatelessWidget{
 
 
@@ -12,6 +13,7 @@ class KytyApp extends StatelessWidget{
         '/loginview':(context) => LoginView(),
         '/registerview':(context) => RegisterView(),
         '/homeview':(context)=> HomeView(),
+        '/splashview':(context)=> SplashView(),
       },
       initialRoute: '/loginview',
     );

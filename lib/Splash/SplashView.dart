@@ -1,0 +1,10 @@
+import 'package:flutter/material.dart';
+
+class SplashView extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return Image.network("https://stripe-camo.global.ssl.fastly.net/ea20e2a7995ba96aad38207a785d4dbe5d618417d92c37bda645ef9a5635f08b/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a6446387852315a3557554a4c5a56425954556c6c6256423666475a735833526c63335266516a42444f4535756147354451564d3055553834596b4e7664477852557a4e773030433031446b5a7145.png");
+  }
+
+}
