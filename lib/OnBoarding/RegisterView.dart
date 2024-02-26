@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class RegisterView extends StatelessWidget {
@@ -15,24 +16,25 @@ class RegisterView extends StatelessWidget {
 
   void onClickAceptar() async {
     if (passwordController.text == repitePasswordController.text) {
+      print('comprueblo contraseñas');
       try {
-        final credential = await FirebaseAuth.instance
-            .createUserWithEmailAndPassword(
+        print('estoy en el try');
+        final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: userNameController.text,
-          password: passwordController.text,);
+          password: passwordController.text,
+        );
 
         Navigator.of(_context).pushNamed("/loginview");
-
-      }on FirebaseAuthException cath (e){
-        if(e.code=='weak-password'){
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'weak-password') {
           print('Contraseña demasiado débil.');
-        }else if (e.code == 'email-already-in-use'){
+        } else if (e.code == 'email-already-in-use') {
           print('Ya existe una cuenta con este email.');
         }
-      }catch(e){
+      } catch (e) {
         print(e);
-    }
-    }else{
+      }
+    } else {
       ScaffoldMessenger.of(_context).showSnackBar(snackBar);
     }
   }
@@ -79,7 +81,7 @@ class RegisterView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextButton(
-              onPressed: () {},
+              onPressed: onClickAceptar,
               child: Text("ACEPTAR"),
             ),
             TextButton(

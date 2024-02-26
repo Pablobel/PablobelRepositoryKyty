@@ -1,5 +1,6 @@
-import 'dart:js';
 
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LoginView extends StatelessWidget{
@@ -15,8 +16,8 @@ class LoginView extends StatelessWidget{
   void onClickAceptar() async {
     try {
       final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: emailAddress,
-          password: password
+          email: userNameController.text,
+          password: passwordController.text
       );
       Navigator.of(_context).popAndPushNamed("/homeview");
     } on FirebaseAuthException catch (e) {
@@ -55,7 +56,7 @@ class LoginView extends StatelessWidget{
       ),
       Row(mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          TextButton(onPressed:(){}, child: Text("Aceptar"),),
+          TextButton(onPressed:onClickAceptar, child: Text("Aceptar"),),
           TextButton(onPressed: onClickRegistrar , child: Text("Registrar"),)
         ],)
     ],);
