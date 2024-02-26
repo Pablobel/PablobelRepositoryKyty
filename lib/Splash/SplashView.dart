@@ -4,7 +4,8 @@ class SplashView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.network("https://stripe-camo.global.ssl.fastly.net/ea20e2a7995ba96aad38207a785d4dbe5d618417d92c37bda645ef9a5635f08b/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a6446387852315a3557554a4c5a56425954556c6c6256423666475a735833526c63335266516a42444f4535756147354451564d3055553834596b4e7664477852557a4e773030433031446b5a7145.png");
+    //return Image.network("https://cdn.discordapp.com/attachments/1094893510609608764/1154156474763845703/yony44_logo_using_cat_ears_and_head_like_disney_symbol_happy_an_1fccd304-c37e-410f-a9bd-155c310e365a.png?ex=65e8d5fa&is=65d660fa&hm=b175fa097f6fb91c9c934125f13260ec643ed9304249b6aa1b77fbb86c0513ac&.png");
+    return Image.asset("resources/cambiame2.png");
   }
 
 }
