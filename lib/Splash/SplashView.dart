@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:kytypablo/FirestoreObjects/FBUsuario.dart';
 
 class SplashView extends StatefulWidget {
   @override
@@ -23,9 +24,16 @@ class _SplashViewState extends State<SplashView> {
     await Future.delayed(Duration(seconds: 5));
     if (FirebaseAuth.instance.currentUser != null) {
       String uidUsuario = FirebaseAuth.instance.currentUser!.uid;
-      DocumentSnapshot<Map<String, dynamic>> datos =
-          await db.collection("Usuarios").doc(uidUsuario).get();
-      if (datos.exists) {
+      /*DocumentSnapshot<Map<String, dynamic>> datos =
+          await db.collection("Usuarios").doc(uidUsuario).get();*/
+      DocumentReference<FBUsuario> ref =
+          db.collection("Usuarios").doc(uidUsuario).withConverter(
+                fromFirestore: FBUsuario.fromFirestore,
+                toFirestore: (FBUsuario usuario, _) => usuario.toFirestore(),
+              );
+      DocumentSnapshot<FBUsuario> docSnap = await ref.get();
+      FBUsuario usuario = docSnap.data()!;
+      if (usuario != null) {
         Navigator.of(context).popAndPushNamed("/homeview");
       } else {
         Navigator.of(context).popAndPushNamed("/perfilview");
