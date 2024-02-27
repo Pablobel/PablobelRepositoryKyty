@@ -52,7 +52,7 @@ class LoginView extends StatelessWidget {
             obscureText: true,
           ),
         ),
-        KTTextField(),
+        KTTextField(tecController: passwordController,sHint: ''),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

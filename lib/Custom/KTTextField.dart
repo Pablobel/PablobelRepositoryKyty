@@ -1,7 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class KTTextField extends StatelessWidget {
+  String sHint;
+  TextEditingController tecController;
+
+  KTTextField({Key? key, this.sHint = "", required this.tecController})
+      : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     Row fila = Row(
