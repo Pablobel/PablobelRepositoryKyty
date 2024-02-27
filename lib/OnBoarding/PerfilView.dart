@@ -1,13 +1,21 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../Custom/KTTextField.dart';
 
 class PerfilView extends StatelessWidget {
   TextEditingController tecNombre = TextEditingController();
-  TextEditingController tecEdad = TextEditingController();
+  TextEditingController tecApellidos = TextEditingController();
+  FirebaseFirestore db = FirebaseFirestore.instance;
 
   void onClickAceptar() {
-    tecNombre.text;
-    tecEdad.text;
+    final usuario = <String, dynamic>{
+      "nombre": tecNombre.text,
+      "apellidos": tecApellidos.text
+    };
+
+    String uidUsuario = FirebaseAuth.instance.currentUser!.uid;
+    db.collection("Usuarios").doc(uidUsuario).set(usuario);
   }
 
   void onClickCancelar() {}
@@ -27,7 +35,7 @@ class PerfilView extends StatelessWidget {
             child: Column(
               children: [
                 KTTextField(tecController: tecNombre, sHint: "Nombre"),
-                KTTextField(tecController: tecEdad, sHint: "Apellidos"),
+                KTTextField(tecController: tecApellidos, sHint: "Apellidos"),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
