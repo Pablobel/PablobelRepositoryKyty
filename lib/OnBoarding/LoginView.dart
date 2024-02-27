@@ -33,26 +33,13 @@ class LoginView extends StatelessWidget {
         Text("Kyty Login", style: TextStyle(fontSize: 25)),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 60, vertical: 16),
-          child: TextField(
-            controller: userNameController,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              hintText: 'Usuario',
-            ),
-          ),
+          child: KTTextField(tecController: userNameController,sHint: 'Usuario'),
         ),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 60, vertical: 16),
-          child: TextFormField(
-            controller: passwordController,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              hintText: 'Contraseña',
-            ),
-            obscureText: true,
-          ),
+          child: KTTextField(tecController: passwordController,sHint: 'Contraseña',esContrasenia: true),
         ),
-        KTTextField(tecController: passwordController,sHint: ''),
+
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

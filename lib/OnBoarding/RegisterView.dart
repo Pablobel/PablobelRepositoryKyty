@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../Custom/KTTextField.dart';
+
 class RegisterView extends StatelessWidget {
   late BuildContext _context;
   TextEditingController userNameController = TextEditingController();
@@ -47,35 +49,15 @@ class RegisterView extends StatelessWidget {
         Text("Kyty Register", style: TextStyle(fontSize: 25)),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 60, vertical: 16),
-          child: TextField(
-            controller: userNameController,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              hintText: 'Usuario',
-            ),
-          ),
+          child: KTTextField(tecController: userNameController,sHint: 'Usuario'),
         ),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 60, vertical: 16),
-          child: TextFormField(
-            controller: passwordController,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              hintText: 'Contraseña',
-            ),
-            obscureText: true,
-          ),
+          child: KTTextField(tecController: passwordController,sHint: 'Contraseña',esContrasenia: true),
         ),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 60, vertical: 16),
-          child: TextFormField(
-            controller: repitePasswordController,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              hintText: 'Repetir Contraseña',
-            ),
-            obscureText: true,
-          ),
+          child: KTTextField(tecController: repitePasswordController,sHint: 'Repetir contraseña',esContrasenia: true),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
