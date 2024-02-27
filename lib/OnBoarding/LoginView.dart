@@ -31,15 +31,11 @@ class LoginView extends StatelessWidget {
     Column columna = Column(
       children: [
         Text("Kyty Login", style: TextStyle(fontSize: 25)),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 60, vertical: 16),
-          child: KTTextField(tecController: userNameController,sHint: 'Usuario'),
-        ),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 60, vertical: 16),
-          child: KTTextField(tecController: passwordController,sHint: 'Contraseña',esContrasenia: true),
-        ),
-
+        KTTextField(tecController: userNameController, sHint: 'Usuario'),
+        KTTextField(
+            tecController: passwordController,
+            sHint: 'Contraseña',
+            esContrasenia: true),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

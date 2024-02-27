@@ -21,7 +21,8 @@ class RegisterView extends StatelessWidget {
       print('comprueblo contraseñas');
       try {
         print('estoy en el try');
-        final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        final credential =
+            await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: userNameController.text,
           password: passwordController.text,
         );
@@ -47,18 +48,15 @@ class RegisterView extends StatelessWidget {
     Column columna = Column(
       children: [
         Text("Kyty Register", style: TextStyle(fontSize: 25)),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 60, vertical: 16),
-          child: KTTextField(tecController: userNameController,sHint: 'Usuario'),
-        ),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 60, vertical: 16),
-          child: KTTextField(tecController: passwordController,sHint: 'Contraseña',esContrasenia: true),
-        ),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 60, vertical: 16),
-          child: KTTextField(tecController: repitePasswordController,sHint: 'Repetir contraseña',esContrasenia: true),
-        ),
+        KTTextField(tecController: userNameController, sHint: 'Usuario'),
+        KTTextField(
+            tecController: passwordController,
+            sHint: 'Contraseña',
+            esContrasenia: true),
+        KTTextField(
+            tecController: repitePasswordController,
+            sHint: 'Repetir contraseña',
+            esContrasenia: true),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
