@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:kytypablo/Custom/KTTextField.dart';
 
+import '../FirestoreObjects/FBUsuario.dart';
+
 class LoginView extends StatelessWidget {
   late BuildContext _context;
   TextEditingController userNameController = TextEditingController();
@@ -18,9 +20,16 @@ class LoginView extends StatelessWidget {
       final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: userNameController.text, password: passwordController.text);
       String uidUsuario = FirebaseAuth.instance.currentUser!.uid;
-      DocumentSnapshot<Map<String, dynamic>> datos =
-          await db.collection("Usuarios").doc(uidUsuario).get();
-      if (datos.exists) {
+      /*DocumentSnapshot<Map<String, dynamic>> datos =
+          await db.collection("Usuarios").doc(uidUsuario).get();*/
+      DocumentReference<FBUsuario> ref =
+          db.collection("Usuarios").doc(uidUsuario).withConverter(
+                fromFirestore: FBUsuario.fromFirestore,
+                toFirestore: (FBUsuario usuario, _) => usuario.toFirestore(),
+              );
+      DocumentSnapshot<FBUsuario> docSnap = await ref.get();
+      FBUsuario usuario = docSnap.data()!;
+      if (usuario != null) {
         Navigator.of(_context).popAndPushNamed("/homeview");
       } else {
         Navigator.of(_context).popAndPushNamed("/perfilview");

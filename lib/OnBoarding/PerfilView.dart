@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../Custom/KTTextField.dart';
+import '../FirestoreObjects/FBUsuario.dart';
 
 class PerfilView extends StatelessWidget {
   TextEditingController tecNombre = TextEditingController();
@@ -10,13 +11,15 @@ class PerfilView extends StatelessWidget {
   late BuildContext _context;
 
   void onClickAceptar() async {
-    final usuario = <String, dynamic>{
+    FBUsuario usuario =
+        new FBUsuario(nombre: tecNombre.text, apellidos: tecApellidos.text);
+    /*final usuario = <String, dynamic>{
       "nombre": tecNombre.text,
       "apellidos": tecApellidos.text
-    };
+    };*/
 
     String uidUsuario = FirebaseAuth.instance.currentUser!.uid;
-    await db.collection("Usuarios").doc(uidUsuario).set(usuario);
+    await db.collection("Usuarios").doc(uidUsuario).set(usuario.toFirestore());
 
     Navigator.of(_context).popAndPushNamed("/homeview");
   }
