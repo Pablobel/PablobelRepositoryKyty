@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:kytypablo/Custom/KTTextField.dart';
@@ -6,6 +7,7 @@ class LoginView extends StatelessWidget {
   late BuildContext _context;
   TextEditingController userNameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  FirebaseFirestore db = FirebaseFirestore.instance;
 
   void onClickRegistrar() {
     Navigator.of(_context).pushNamed("/registerview");
@@ -15,7 +17,14 @@ class LoginView extends StatelessWidget {
     try {
       final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: userNameController.text, password: passwordController.text);
-      Navigator.of(_context).popAndPushNamed("/homeview");
+      String uidUsuario = FirebaseAuth.instance.currentUser!.uid;
+      DocumentSnapshot<Map<String, dynamic>> datos =
+          await db.collection("Usuarios").doc(uidUsuario).get();
+      if (datos.exists) {
+        Navigator.of(_context).popAndPushNamed("/homeview");
+      } else {
+        Navigator.of(_context).popAndPushNamed("/perfilview");
+      }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         print('No user found for that email.');

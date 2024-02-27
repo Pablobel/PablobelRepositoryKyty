@@ -7,21 +7,25 @@ class PerfilView extends StatelessWidget {
   TextEditingController tecNombre = TextEditingController();
   TextEditingController tecApellidos = TextEditingController();
   FirebaseFirestore db = FirebaseFirestore.instance;
+  late BuildContext _context;
 
-  void onClickAceptar() {
+  void onClickAceptar() async {
     final usuario = <String, dynamic>{
       "nombre": tecNombre.text,
       "apellidos": tecApellidos.text
     };
 
     String uidUsuario = FirebaseAuth.instance.currentUser!.uid;
-    db.collection("Usuarios").doc(uidUsuario).set(usuario);
+    await db.collection("Usuarios").doc(uidUsuario).set(usuario);
+
+    Navigator.of(_context).popAndPushNamed("/homeview");
   }
 
   void onClickCancelar() {}
 
   @override
   Widget build(BuildContext context) {
+    _context = context;
     return Scaffold(
         appBar: AppBar(
           title: const Text('Perfil'),
