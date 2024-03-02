@@ -12,7 +12,7 @@ class _HomeViewState extends State<HomeView> {
 
   FirebaseFirestore db = FirebaseFirestore.instance;
   final List<FBPost> articulos = [];
-
+  bool bIsList = false;
 
   @override
   void initState() {
