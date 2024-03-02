@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:kytypablo/Custom/PostCellView.dart';
+import '../FirestoreObjects/FBPost.dart';
 
 class HomeView extends StatefulWidget {
   @override
@@ -7,20 +9,39 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+
+  FirebaseFirestore db = FirebaseFirestore.instance;
+  final List<FBPost> articulos = [];
+
+
   @override
   void initState() {
     super.initState();
+    descargarPost();
   }
 
-  final List<String> post = <String>['A', 'B', 'C'];
-  final List<int> colorCodes = <int>[600, 500, 100];
-  final List<double> fontSize = <double>[30, 15, 70];
+  void descargarPost() async{
+    CollectionReference<FBPost> ref =
+    db.collection("Articulos").withConverter(
+      fromFirestore: FBPost.fromFirestore,
+      toFirestore: (FBPost articulo, _) => articulo.toFirestore(),
+    );
+    QuerySnapshot<FBPost> querySnapshot = await ref.get();
+    for(int i = 0;i<querySnapshot.docs.length;i++){
+      setState(() {
+        articulos.add(querySnapshot.docs[i].data());
+      });
+
+    }
+
+  }
+
 
   Widget? creadorDeItemLista(BuildContext context, int index) {
     return PostCellView(
-        text: post[index],
-        colorCode: colorCodes[index],
-        fontSize: fontSize[index]);
+        text: articulos[index].nombre,
+        colorCode: 0,
+        fontSize: 20);
   }
 
   Widget creadorDeSeparadorLista(BuildContext context,int index){
@@ -38,7 +59,7 @@ class _HomeViewState extends State<HomeView> {
       appBar: AppBar(title: Text("FRIKEANDO")),
       body: ListView.separated(
         padding: EdgeInsets.all(80),
-        itemCount: post.length,
+        itemCount: articulos.length,
         itemBuilder: creadorDeItemLista,
         separatorBuilder:creadorDeSeparadorLista,
       ),
