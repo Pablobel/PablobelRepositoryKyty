@@ -14,7 +14,9 @@ class FBUsuario {
     SnapshotOptions? options,
   ) {
     final data = snapshot.data();
-    return FBUsuario(nombre: data?['nombre'], apellidos: data?['apellidos']);
+    return FBUsuario(
+        nombre: data?['nombre'] ? data!['nombre'] : "",
+        apellidos: data?['apellidos'] ? data!["apellidos"] : "");
   }
 
   Map<String, dynamic> toFirestore() {

@@ -18,7 +18,7 @@ class KytyApp extends StatelessWidget{
         '/splashview':(context)=> SplashView(),
         '/perfilview':(context)=> PerfilView(),
       },
-      initialRoute: '/loginview',
+      initialRoute: '/homeview',
     );
 
     return materialApp;
