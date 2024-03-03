@@ -1,9 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:kytypablo/Custom/PostCellView.dart';
 import '../Custom/BottomMenu.dart';
+import '../Custom/DrawerClass.dart';
 import '../Custom/PostGridCellView.dart';
 import '../FirestoreObjects/FBPost.dart';
+import '../OnBoarding/LoginView.dart';
 
 class HomeView extends StatefulWidget {
   @override
@@ -25,6 +28,18 @@ class _HomeViewState extends State<HomeView> {
         isList = false;
       });
     }
+  }
+
+  void homeViewDrawerOnTap(int indice) {
+    if (indice == 0) {
+      //FirebaseAuth.instance.signOut();
+      //Navigator.of(context).pop();
+      //Navigator.of(context).popAndPushNamed("/loginview");
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (BuildContext context) => LoginView()),
+        ModalRoute.withName('/loginview'),
+      );
+    } else if (indice == 1) {}
   }
 
   @override
@@ -78,6 +93,7 @@ class _HomeViewState extends State<HomeView> {
       ),
       bottomNavigationBar:
           BottomMenu(onBottonMenuPressed: this.onBottonMenuPressed),
+      drawer: DrawerClass(onItemTap: homeViewDrawerOnTap),
       /*ListView.separated(
         padding: EdgeInsets.all(80),
         itemCount: articulos.length,
