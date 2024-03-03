@@ -17,9 +17,9 @@ class FBPost {
   ) {
     final data = snapshot.data();
     return FBPost(
-        nombre: data?['nombre'],
-        descripcion: data?['descripcion'],
-        precio: data?['precio']);
+        nombre: data?['nombre'] != null ? data!['nombre'] : "",
+        descripcion: data?['descripcion'] != null ? data!['descripcion'] : "",
+        precio: data?['precio'] != null ? data!['precio'] : 0.0);
   }
 
   Map<String, dynamic> toFirestore() {

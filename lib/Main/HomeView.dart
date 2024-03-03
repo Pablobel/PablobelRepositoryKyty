@@ -92,6 +92,8 @@ class _HomeViewState extends State<HomeView> {
       fontSize: 60,
       colorCode: 0,
       height: 200,
+      posicion: index,
+      botonItemMatriz: botonItemLista,
     );
   }
 
@@ -105,6 +107,11 @@ class _HomeViewState extends State<HomeView> {
       bottomNavigationBar:
           BottomMenu(onBottonMenuPressed: this.onBottonMenuPressed),
       drawer: DrawerClass(onItemTap: homeViewDrawerOnTap),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){},
+        child: Icon(Icons.add)
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       /*ListView.separated(
         padding: EdgeInsets.all(80),
         itemCount: articulos.length,
