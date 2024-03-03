@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:kytypablo/Custom/PostCellView.dart';
+import 'package:kytypablo/Interfaces/BottomMenuEvents.dart';
+import '../Custom/BottomMenu.dart';
 import '../Custom/PostGridCellView.dart';
 import '../FirestoreObjects/FBPost.dart';
 
@@ -9,10 +11,23 @@ class HomeView extends StatefulWidget {
   State<HomeView> createState() => _HomeViewState();
 }
 
-class _HomeViewState extends State<HomeView> {
+class _HomeViewState extends State<HomeView> implements BottomMenuEvents {
   FirebaseFirestore db = FirebaseFirestore.instance;
   final List<FBPost> articulos = [];
   bool isList = false;
+
+  @override
+  void onBottonMenuPressed(int indice) {
+    if (indice == 0) {
+      setState(() {
+        isList = true;
+      });
+    } else if (indice == 1) {
+      setState(() {
+        isList = false;
+      });
+    }
+  }
 
   @override
   void initState() {
@@ -63,6 +78,7 @@ class _HomeViewState extends State<HomeView> {
       body: Center(
         child: celdasOLista(isList),
       ),
+      bottomNavigationBar: BottomMenu(events: this),
       /*ListView.separated(
         padding: EdgeInsets.all(80),
         itemCount: articulos.length,
