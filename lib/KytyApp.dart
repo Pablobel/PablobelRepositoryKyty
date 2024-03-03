@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kytypablo/Main/ArticuloView.dart';
 import 'Main/HomeView.dart';
 import 'OnBoarding/LoginView.dart';
 import 'OnBoarding/PerfilView.dart';
@@ -17,8 +18,9 @@ class KytyApp extends StatelessWidget{
         '/homeview':(context)=> HomeView(),
         '/splashview':(context)=> SplashView(),
         '/perfilview':(context)=> PerfilView(),
+        '/articuloview':(context)=> ArticuloView(),
       },
-      initialRoute: '/loginview',
+      initialRoute: '/homeview',
     );
 
     return materialApp;

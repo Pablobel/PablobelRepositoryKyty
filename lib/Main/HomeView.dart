@@ -32,7 +32,7 @@ class _HomeViewState extends State<HomeView> {
 
   void homeViewDrawerOnTap(int indice) {
     if (indice == 0) {
-      //FirebaseAuth.instance.signOut();
+      FirebaseAuth.instance.signOut();
       //Navigator.of(context).pop();
       //Navigator.of(context).popAndPushNamed("/loginview");
       Navigator.of(context).pushAndRemoveUntil(
@@ -61,9 +61,18 @@ class _HomeViewState extends State<HomeView> {
     }
   }
 
+  void botonItemLista(int indice) {
+    Navigator.of(context).pushNamed("/articuloview");
+  }
+
   Widget? creadorDeItemLista(BuildContext context, int index) {
     return PostCellView(
-        text: articulos[index].nombre, colorCode: 0, fontSize: 20);
+      text: articulos[index].nombre,
+      colorCode: 0,
+      fontSize: 20,
+      posicion: index,
+      botonItemLista: botonItemLista,
+    );
   }
 
   Widget creadorDeSeparadorLista(BuildContext context, int index) {
