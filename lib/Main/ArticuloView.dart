@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:kytypablo/Singletone/DataHolder.dart';
 
 class ArticuloView extends StatelessWidget {
   @override
   Widget build(BuildContext cotext) {
     return Scaffold(
-      appBar: AppBar(title: Text("Artículo nº:"),),
+        appBar: AppBar(
+          title: Text(DataHolder().nombre),
+        ),
         body: Column(
-      children: [
-        Text("RELLÉNAME"),
-        Image.asset("resources/cambiame1.png",width: 30, height: 45),
-        TextButton(onPressed: null, child: Text("Comprar"))
-      ],
-    ));
+          children: [
+            Text(DataHolder().selectedPost.descripcion),
+            Image.asset("resources/cambiame1.png", width: 30, height: 45),
+            TextButton(onPressed: null, child: Text("Comprar"))
+          ],
+        ));
   }
 }

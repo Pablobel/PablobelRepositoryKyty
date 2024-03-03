@@ -7,6 +7,7 @@ import '../Custom/DrawerClass.dart';
 import '../Custom/PostGridCellView.dart';
 import '../FirestoreObjects/FBPost.dart';
 import '../OnBoarding/LoginView.dart';
+import '../Singletone/DataHolder.dart';
 
 class HomeView extends StatefulWidget {
   @override
@@ -62,6 +63,7 @@ class _HomeViewState extends State<HomeView> {
   }
 
   void botonItemLista(int indice) {
+    DataHolder().selectedPost=articulos[indice];
     Navigator.of(context).pushNamed("/articuloview");
   }
 
