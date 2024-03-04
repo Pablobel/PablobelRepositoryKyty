@@ -18,7 +18,7 @@ class RegisterView extends StatelessWidget {
 
   void onClickAceptar() async {
     if (passwordController.text == repitePasswordController.text) {
-      print('comprueblo contraseñas');
+      print('compruebo contraseñas');
       try {
         print('estoy en el try');
         final credential =

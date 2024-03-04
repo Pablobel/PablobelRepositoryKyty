@@ -108,7 +108,9 @@ class _HomeViewState extends State<HomeView> {
           BottomMenu(onBottonMenuPressed: this.onBottonMenuPressed),
       drawer: DrawerClass(onItemTap: homeViewDrawerOnTap),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){},
+        onPressed: (){
+          Navigator.of(context).pushNamed('/creacionarticuloview');
+        },
         child: Icon(Icons.add)
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
