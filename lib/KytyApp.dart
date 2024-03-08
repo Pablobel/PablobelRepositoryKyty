@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kytypablo/Main/ArticuloView.dart';
+import 'package:kytypablo/Main/CategoriasView.dart';
+import 'package:kytypablo/Main/MasterCategoriasView.dart';
+import 'package:kytypablo/Main/MasterHomeView.dart';
 import 'Main/CreacionArticuloView.dart';
 import 'Main/HomeView.dart';
 import 'OnBoarding/LoginView.dart';
@@ -21,8 +24,11 @@ class KytyApp extends StatelessWidget{
         '/perfilview':(context)=> PerfilView(),
         '/articuloview':(context)=> ArticuloView(),
         '/creacionarticuloview':(context)=> CreacionArticuloView(),
+        '/categoriasview':(context)=> CategoriasView(),
+        '/masterhomeview':(context)=> MasterHomeView(),
+        '/mastercategoriasview':(context)=> MasterCategoriasView(),
       },
-      initialRoute: '/homeview',
+      initialRoute: '/splashview',
     );
 
     return materialApp;

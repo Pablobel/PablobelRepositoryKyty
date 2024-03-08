@@ -9,7 +9,7 @@ class CreacionArticuloView extends StatelessWidget {
   TextEditingController titulo = TextEditingController();
   TextEditingController descripcion = TextEditingController();
   TextEditingController precio = TextEditingController();
-  FirebaseFirestore db = FirebaseFirestore.instance;
+
 
   @override
   Widget build(BuildContext cotext) {
@@ -30,13 +30,7 @@ class CreacionArticuloView extends StatelessWidget {
                       descripcion: descripcion.text,
                       precio: double.parse(precio.text));
 
-                  CollectionReference<FBPost> postRef = db
-                      .collection("Articulos")
-                      .withConverter(
-                          fromFirestore: FBPost.fromFirestore,
-                          toFirestore: (FBPost post, _) => post.toFirestore());
-
-                  postRef.add(nuevoArticulo);
+                  DataHolder().aniadirArticuloEnFB(nuevoArticulo);
                 },
                 child: Text("Vender"))
           ],

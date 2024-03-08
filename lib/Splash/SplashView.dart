@@ -12,6 +12,7 @@ class SplashView extends StatefulWidget {
 
 class _SplashViewState extends State<SplashView> {
   FirebaseFirestore db = FirebaseFirestore.instance;
+  String uidMaster = "qhM2QOZ8EbXMIZofeFGXT2AyUa13";
 
   @override
   void initState() {
@@ -33,8 +34,14 @@ class _SplashViewState extends State<SplashView> {
               );
       DocumentSnapshot<FBUsuario> docSnap = await ref.get();
       FBUsuario usuario = docSnap.data()!;
+
       if (usuario != null) {
-        Navigator.of(context).popAndPushNamed("/homeview");
+        if (uidUsuario == uidMaster) {
+          Navigator.of(context).popAndPushNamed("/masterhomeview");
+          print("soy master");
+        } else {
+          Navigator.of(context).popAndPushNamed("/categoriasview");
+        }
       } else {
         Navigator.of(context).popAndPushNamed("/perfilview");
       }

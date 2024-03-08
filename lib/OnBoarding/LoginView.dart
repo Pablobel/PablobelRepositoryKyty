@@ -10,7 +10,7 @@ class LoginView extends StatelessWidget {
   TextEditingController userNameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   FirebaseFirestore db = FirebaseFirestore.instance;
-
+  String uidMaster = "qhM2QOZ8EbXMIZofeFGXT2AyUa13";
 
   void onClickRegistrar() {
     Navigator.of(_context).pushNamed("/registerview");
@@ -29,9 +29,15 @@ class LoginView extends StatelessWidget {
                 toFirestore: (FBUsuario usuario, _) => usuario.toFirestore(),
               );
       DocumentSnapshot<FBUsuario> docSnap = await ref.get();
-      FBUsuario ? usuario = docSnap.data();
-      if (usuario!=null) {
-        Navigator.of(_context).popAndPushNamed("/homeview");
+      FBUsuario? usuario = docSnap.data();
+
+      if (usuario != null) {
+        if (uidUsuario == uidMaster) {
+          Navigator.of(_context).popAndPushNamed("/mastercategoriasview");
+          print("soy master");
+        } else {
+          Navigator.of(_context).popAndPushNamed("/categoriasview");
+        }
       } else {
         Navigator.of(_context).popAndPushNamed("/perfilview");
       }
