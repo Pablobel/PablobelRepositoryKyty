@@ -1,32 +1,47 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'dart:io';
+import 'dart:typed_data';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:kytypablo/FirestoreObjects/FBPost.dart';
 import 'package:kytypablo/Singletone/DataHolder.dart';
-
 import '../Custom/KTTextField.dart';
 
-class CreacionArticuloView extends StatelessWidget {
+class CreacionArticuloView extends StatefulWidget {
+  @override
+  State<CreacionArticuloView> createState() => _CreacionArticuloViewState();
+}
+
+class _CreacionArticuloViewState extends State<CreacionArticuloView> {
   TextEditingController titulo = TextEditingController();
+
   TextEditingController descripcion = TextEditingController();
+
   TextEditingController precio = TextEditingController();
+
   int categoria = DataHolder().categoria;
+
   ImagePicker _picker = ImagePicker();
-  String _imagePreview="resources/cambiame1.png";
+
+  Uint8List? _imagePreview;
 
   void onGalleryClicked() async {
     XFile? image = await _picker.pickImage(source: ImageSource.gallery);
-    if(_imagePreview!=null){
-
+    if (image != null) {
+      final imageData = await image.readAsBytes();
+      setState(() {
+        _imagePreview = imageData;
+      });
     }
   }
 
   void onCameraClicked() async {
     XFile? image = await _picker.pickImage(source: ImageSource.camera);
-    if(_imagePreview!=null){
-
+    if (image != null) {
+      final imageData = await image.readAsBytes();
+      setState(() {
+        _imagePreview = imageData;
+      });
     }
   }
 
@@ -41,7 +56,9 @@ class CreacionArticuloView extends StatelessWidget {
             KTTextField(tecController: titulo, sHint: 'Escribe título'),
             KTTextField(tecController: descripcion, sHint: 'Decripción'),
             KTTextField(tecController: precio, sHint: '0.0'),
-            Image.asset(_imagePreview, width: 300, height: 450),
+            _imagePreview != null
+                ? Image.memory(_imagePreview!, width: 100, height: 100)
+                : Placeholder(),
             Row(children: [
               TextButton(onPressed: onGalleryClicked, child: Text("Galería")),
               TextButton(onPressed: onCameraClicked, child: Text("Cámara"))
