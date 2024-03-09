@@ -1,6 +1,5 @@
 import 'dart:typed_data';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
@@ -61,15 +60,28 @@ class _CreacionArticuloViewState extends State<CreacionArticuloView> {
             ]),
             TextButton(
                 onPressed: () {
-                  FBPost nuevoArticulo = new FBPost(
+                  /*FBPost nuevoArticulo = new FBPost(
                       nombre: titulo.text,
                       descripcion: descripcion.text,
                       precio: double.parse(precio.text));
 
-                  DataHolder().aniadirArticuloEnFB(nuevoArticulo);
+                  DataHolder().aniadirArticuloEnFB(nuevoArticulo);*/
+                  subirArchivo();
                 },
                 child: Text("Vender"))
           ],
         ));
+  }
+
+  void subirArchivo() async {
+    final storageRef = FirebaseStorage.instance.ref();
+
+    final rutaAFicheroEnNube = storageRef.child("imagenGuardada.jpg");
+    if (_imagePreview != null) {
+      await rutaAFicheroEnNube.putData(_imagePreview!);
+    } else {
+      print("No hay imagen para subir.");
+    }
+
   }
 }
