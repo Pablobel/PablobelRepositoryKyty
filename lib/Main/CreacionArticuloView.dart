@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:kytypablo/FirestoreObjects/FBPost.dart';
 import 'package:kytypablo/Singletone/DataHolder.dart';
@@ -14,15 +15,10 @@ class CreacionArticuloView extends StatefulWidget {
 
 class _CreacionArticuloViewState extends State<CreacionArticuloView> {
   TextEditingController titulo = TextEditingController();
-
   TextEditingController descripcion = TextEditingController();
-
   TextEditingController precio = TextEditingController();
-
   int categoria = DataHolder().categoria;
-
   ImagePicker _picker = ImagePicker();
-
   Uint8List? _imagePreview;
 
   void onGalleryClicked() async {
@@ -58,7 +54,7 @@ class _CreacionArticuloViewState extends State<CreacionArticuloView> {
             KTTextField(tecController: precio, sHint: '0.0'),
             _imagePreview != null
                 ? Image.memory(_imagePreview!, width: 100, height: 100)
-                : Placeholder(),
+                : Image.asset('resources/cambiame1.png', width: 100, height: 100),
             Row(children: [
               TextButton(onPressed: onGalleryClicked, child: Text("Galería")),
               TextButton(onPressed: onCameraClicked, child: Text("Cámara"))
