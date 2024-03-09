@@ -18,6 +18,7 @@ class _MasterHomeViewState extends State<MasterHomeView> {
   FirebaseFirestore db = FirebaseFirestore.instance;
   final List<FBPost> articulos = [];
   bool isList = false;
+  late String categoria;
 
   void onBottonMenuPressed(int indice) {
     if (indice == 0) {
@@ -46,14 +47,29 @@ class _MasterHomeViewState extends State<MasterHomeView> {
   @override
   void initState() {
     super.initState();
+    compruebaCategoria();
     descargarPost();
   }
 
+  void compruebaCategoria() {
+    if (DataHolder().categoria == 0) {
+      categoria = "Comics";
+    } else if (DataHolder().categoria == 1) {
+      categoria = "Tomos";
+    } else if (DataHolder().categoria == 2) {
+      categoria = "Magic";
+    } else if (DataHolder().categoria == 3) {
+      categoria = "Yu-Gi-Oh";
+    } else if (DataHolder().categoria == 4) {
+      categoria = "Juegos Retro";
+    }
+  }
+
   void descargarPost() async {
-    CollectionReference<FBPost> ref = db.collection("Articulos").withConverter(
-      fromFirestore: FBPost.fromFirestore,
-      toFirestore: (FBPost articulo, _) => articulo.toFirestore(),
-    );
+    CollectionReference<FBPost> ref = db.collection(categoria).withConverter(
+          fromFirestore: FBPost.fromFirestore,
+          toFirestore: (FBPost articulo, _) => articulo.toFirestore(),
+        );
     QuerySnapshot<FBPost> querySnapshot = await ref.get();
     for (int i = 0; i < querySnapshot.docs.length; i++) {
       setState(() {
@@ -63,7 +79,7 @@ class _MasterHomeViewState extends State<MasterHomeView> {
   }
 
   void botonItemLista(int indice) {
-    DataHolder().selectedPost=articulos[indice];
+    DataHolder().selectedPost = articulos[indice];
     Navigator.of(context).pushNamed("/articuloview");
   }
 
@@ -105,14 +121,13 @@ class _MasterHomeViewState extends State<MasterHomeView> {
         child: celdasOLista(isList),
       ),
       bottomNavigationBar:
-      BottomMenu(onBottonMenuPressed: this.onBottonMenuPressed),
+          BottomMenu(onBottonMenuPressed: this.onBottonMenuPressed),
       drawer: DrawerClass(onItemTap: homeViewDrawerOnTap),
       floatingActionButton: FloatingActionButton(
-          onPressed: (){
+          onPressed: () {
             Navigator.of(context).pushNamed('/creacionarticuloview');
           },
-          child: Icon(Icons.add)
-      ),
+          child: Icon(Icons.add)),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       /*ListView.separated(
         padding: EdgeInsets.all(80),

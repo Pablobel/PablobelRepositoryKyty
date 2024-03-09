@@ -18,6 +18,7 @@ class _HomeViewState extends State<HomeView> {
   FirebaseFirestore db = FirebaseFirestore.instance;
   final List<FBPost> articulos = [];
   bool isList = false;
+  late String categoria;
 
   void onBottonMenuPressed(int indice) {
     if (indice == 0) {
@@ -46,11 +47,26 @@ class _HomeViewState extends State<HomeView> {
   @override
   void initState() {
     super.initState();
+    compruebaCategoria();
     descargarPost();
   }
 
+  void compruebaCategoria() {
+    if (DataHolder().categoria == 0) {
+      categoria = "Comics";
+    } else if (DataHolder().categoria == 1) {
+      categoria = "Tomos";
+    } else if (DataHolder().categoria == 2) {
+      categoria = "Magic";
+    } else if (DataHolder().categoria == 3) {
+      categoria = "Yu-Gi-Oh";
+    } else if (DataHolder().categoria == 4) {
+      categoria = "Juegos Retro";
+    }
+  }
+
   void descargarPost() async {
-    CollectionReference<FBPost> ref = db.collection("Articulos").withConverter(
+    CollectionReference<FBPost> ref = db.collection(categoria).withConverter(
           fromFirestore: FBPost.fromFirestore,
           toFirestore: (FBPost articulo, _) => articulo.toFirestore(),
         );
