@@ -49,6 +49,7 @@ class _HomeViewState extends State<HomeView> {
     super.initState();
     compruebaCategoria();
     descargarPost();
+    DataHolder().httpAdmin.pedirTiempoEn(40.42, 3.53);
   }
 
   void compruebaCategoria() {

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../FirestoreObjects/FBPost.dart';
+import 'HttpAdmin.dart';
 
 class DataHolder {
   static final DataHolder _dataHolder = new DataHolder._internal();
@@ -8,6 +9,7 @@ class DataHolder {
   late FBPost selectedPost;
   late int categoria;
   FirebaseFirestore db = FirebaseFirestore.instance;
+  HttpAdmin httpAdmin= HttpAdmin();
 
   DataHolder._internal() {}
 
