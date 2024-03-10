@@ -15,9 +15,9 @@ class DataHolder {
     return _dataHolder;
   }
 
-  void aniadirArticuloEnFB(FBPost nuevoArticulo) {
+  void aniadirArticuloEnFB(FBPost nuevoArticulo,String categoria) {
     CollectionReference<FBPost> postRef = db
-        .collection("Articulos")
+        .collection(categoria)
         .withConverter(
             fromFirestore: FBPost.fromFirestore,
             toFirestore: (FBPost post, _) => post.toFirestore());

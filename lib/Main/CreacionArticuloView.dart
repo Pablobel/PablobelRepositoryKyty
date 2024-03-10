@@ -13,12 +13,20 @@ class CreacionArticuloView extends StatefulWidget {
 }
 
 class _CreacionArticuloViewState extends State<CreacionArticuloView> {
+  final List<String> categorias = [
+    "Comics",
+    "Tomos",
+    "Magic",
+    "Yu-Gi-Oh",
+    "Juegos Retro"
+  ];
   TextEditingController titulo = TextEditingController();
   TextEditingController descripcion = TextEditingController();
   TextEditingController precio = TextEditingController();
   int categoria = DataHolder().categoria;
   ImagePicker _picker = ImagePicker();
   Uint8List? _imagePreview;
+  late String urlImagen;
 
   void onGalleryClicked() async {
     XFile? image = await _picker.pickImage(source: ImageSource.gallery);
@@ -53,20 +61,16 @@ class _CreacionArticuloViewState extends State<CreacionArticuloView> {
             KTTextField(tecController: precio, sHint: '0.0'),
             _imagePreview != null
                 ? Image.memory(_imagePreview!, width: 100, height: 100)
-                : Image.asset('resources/cambiame1.png', width: 100, height: 100),
+                : Image.asset('resources/cambiame1.png',
+                    width: 100, height: 100),
             Row(children: [
               TextButton(onPressed: onGalleryClicked, child: Text("Galería")),
               TextButton(onPressed: onCameraClicked, child: Text("Cámara"))
             ]),
             TextButton(
                 onPressed: () {
-                  /*FBPost nuevoArticulo = new FBPost(
-                      nombre: titulo.text,
-                      descripcion: descripcion.text,
-                      precio: double.parse(precio.text));
-
-                  DataHolder().aniadirArticuloEnFB(nuevoArticulo);*/
                   subirArchivo();
+
                 },
                 child: Text("Vender"))
           ],
@@ -75,13 +79,22 @@ class _CreacionArticuloViewState extends State<CreacionArticuloView> {
 
   void subirArchivo() async {
     final storageRef = FirebaseStorage.instance.ref();
-
-    final rutaAFicheroEnNube = storageRef.child("imagenGuardada.jpg");
+    //final metadata = SettableMetadata(contentType:"image/jpeg");
+    final rutaAFicheroEnNube = storageRef.child(categorias[categoria] +
+        "/" +
+        DateTime.now().millisecondsSinceEpoch.toString() +
+        ".jpg");
     if (_imagePreview != null) {
       await rutaAFicheroEnNube.putData(_imagePreview!);
+      urlImagen = await rutaAFicheroEnNube.getDownloadURL();
+      FBPost nuevoArticulo = new FBPost(
+          nombre: titulo.text,
+          descripcion: descripcion.text,
+          precio: double.parse(precio.text),
+          urlImagen: urlImagen);
+      DataHolder().aniadirArticuloEnFB(nuevoArticulo,categorias[categoria]);
     } else {
       print("No hay imagen para subir.");
     }
-
   }
 }
