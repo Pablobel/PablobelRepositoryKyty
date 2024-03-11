@@ -7,6 +7,7 @@ import 'Main/CreacionArticuloView.dart';
 import 'Main/HomeView.dart';
 import 'OnBoarding/LoginView.dart';
 import 'OnBoarding/PerfilView.dart';
+import 'OnBoarding/PhoneView.dart';
 import 'OnBoarding/RegisterView.dart';
 import 'Splash/SplashView.dart';
 
@@ -27,8 +28,9 @@ class KytyApp extends StatelessWidget{
         '/categoriasview':(context)=> CategoriasView(),
         '/masterhomeview':(context)=> MasterHomeView(),
         '/mastercategoriasview':(context)=> MasterCategoriasView(),
+        '/phoneview':(context)=> PhoneView(),
       },
-      initialRoute: '/categoriasview',
+      initialRoute: '/phoneview',
     );
 
     return materialApp;
