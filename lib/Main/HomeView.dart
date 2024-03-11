@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:kytypablo/Custom/PostCellView.dart';
 import '../Custom/BottomMenu.dart';
 import '../Custom/DrawerClass.dart';
@@ -36,7 +37,7 @@ class _HomeViewState extends State<HomeView> {
       setState(() {
         isList = false;
       });
-    }else if(indice == 2){
+    } else if (indice == 2) {
       Navigator.of(context).pushNamed('/categoriasview');
     }
   }
@@ -58,7 +59,13 @@ class _HomeViewState extends State<HomeView> {
     super.initState();
     compruebaCategoria();
     descargarPost();
+    loadGeoLocator();
     DataHolder().httpAdmin.pedirTiempoEn(40.42, 3.53);
+  }
+
+  void loadGeoLocator() async {
+    Position pos = await DataHolder().geolocAdmin.determinePosition();
+    print(pos);
   }
 
   void compruebaCategoria() {
@@ -89,7 +96,7 @@ class _HomeViewState extends State<HomeView> {
   }
 
   void botonItemLista(int indice) {
-    DataHolder().selectedPost=articulos[indice];
+    DataHolder().selectedPost = articulos[indice];
     Navigator.of(context).pushNamed("/articuloview");
   }
 
@@ -137,11 +144,10 @@ class _HomeViewState extends State<HomeView> {
           BottomMenu(onBottonMenuPressed: this.onBottonMenuPressed),
       drawer: DrawerClass(onItemTap: homeViewDrawerOnTap),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          Navigator.of(context).pushNamed('/creacionarticuloview');
-        },
-        child: Icon(Icons.add)
-      ),
+          onPressed: () {
+            Navigator.of(context).pushNamed('/creacionarticuloview');
+          },
+          child: Icon(Icons.add)),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       /*ListView.separated(
         padding: EdgeInsets.all(80),

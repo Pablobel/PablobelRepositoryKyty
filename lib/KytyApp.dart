@@ -30,7 +30,7 @@ class KytyApp extends StatelessWidget{
         '/mastercategoriasview':(context)=> MasterCategoriasView(),
         '/phoneview':(context)=> PhoneView(),
       },
-      initialRoute: '/phoneview',
+      initialRoute: '/registerview',
     );
 
     return materialApp;

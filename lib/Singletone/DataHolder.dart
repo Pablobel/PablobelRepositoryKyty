@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:kytypablo/Singletone/GeolocAdmin.dart';
 import '../FirestoreObjects/FBPost.dart';
 import 'HttpAdmin.dart';
 
@@ -9,7 +10,8 @@ class DataHolder {
   late FBPost selectedPost;
   late int categoria;
   FirebaseFirestore db = FirebaseFirestore.instance;
-  HttpAdmin httpAdmin= HttpAdmin();
+  HttpAdmin httpAdmin = HttpAdmin();
+  GeolocAdmin geolocAdmin = GeolocAdmin();
 
   DataHolder._internal() {}
 
@@ -17,7 +19,7 @@ class DataHolder {
     return _dataHolder;
   }
 
-  void aniadirArticuloEnFB(FBPost nuevoArticulo,String categoria) {
+  void aniadirArticuloEnFB(FBPost nuevoArticulo, String categoria) {
     CollectionReference<FBPost> postRef = db
         .collection(categoria)
         .withConverter(
