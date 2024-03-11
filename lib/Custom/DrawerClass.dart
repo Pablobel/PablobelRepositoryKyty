@@ -18,17 +18,17 @@ class DrawerClass extends StatelessWidget {
             child: Text(style: TextStyle(color: Colors.white), 'Header'),
           ),
           ListTile(
-            leading: Image.asset('resources/cambiame1.png'),
+            leading: Image.asset('resources/tienda.png'),
             selectedColor: Colors.blue,
             selected: true,
-            title: const Text('Apartado 1'),
+            title: const Text('Salir'),
             onTap: () {
               onItemTap!(0);
             },
           ),
           ListTile(
             leading: Icon(Icons.accessible_forward_rounded, color: Colors.red),
-            title: const Text('Apartado 2'),
+            title: const Text('Próximamente'),
             onTap: () {
               onItemTap!(1);
             },

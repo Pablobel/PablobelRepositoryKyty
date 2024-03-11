@@ -19,6 +19,13 @@ class _MasterHomeViewState extends State<MasterHomeView> {
   final List<FBPost> articulos = [];
   bool isList = false;
   late String categoria;
+  final List<String> imagenCategorias = [
+    "comics",
+    "tomos",
+    "magic",
+    "yugioh",
+    "juegosretro"
+  ];
 
   void onBottonMenuPressed(int indice) {
     if (indice == 0) {
@@ -29,6 +36,8 @@ class _MasterHomeViewState extends State<MasterHomeView> {
       setState(() {
         isList = false;
       });
+    }else if(indice == 2){
+      Navigator.of(context).pushNamed('/mastercategoriasview');
     }
   }
 
@@ -90,6 +99,7 @@ class _MasterHomeViewState extends State<MasterHomeView> {
       fontSize: 20,
       posicion: index,
       botonItemLista: botonItemLista,
+      rutaImagen: "resources/" + imagenCategorias[index] + ".png",
     );
   }
 
@@ -110,6 +120,7 @@ class _MasterHomeViewState extends State<MasterHomeView> {
       height: 200,
       posicion: index,
       botonItemMatriz: botonItemLista,
+      urlImagen: articulos[index].urlImagen,
     );
   }
 

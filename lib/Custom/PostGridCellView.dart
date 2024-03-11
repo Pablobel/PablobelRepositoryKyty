@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class PostGridCellView extends StatelessWidget {
@@ -8,6 +7,7 @@ class PostGridCellView extends StatelessWidget {
   final double height;
   final int posicion;
   final Function(int indice) botonItemMatriz;
+  final String urlImagen;
 
   const PostGridCellView(
       {super.key,
@@ -16,7 +16,8 @@ class PostGridCellView extends StatelessWidget {
       required this.fontSize,
       required this.height,
       required this.posicion,
-      required this.botonItemMatriz});
+      required this.botonItemMatriz,
+      required this.urlImagen});
 
   @override
   Widget build(BuildContext context) {
@@ -27,16 +28,14 @@ class PostGridCellView extends StatelessWidget {
             decoration: BoxDecoration(
                 image: DecorationImage(
                     opacity: 0.2,
-                    image: NetworkImage("resources/cambiame1.png"),
+                    image: NetworkImage("resources/tienda.png"),
                     fit: BoxFit.cover)),
             color: Colors.amber[colorCode],
             child: Column(
               children: [
-                Image.asset("resources/cambiame2.png", width: 70, height: 70),
+                Image.network("https://firebasestorage.googleapis.com/v0/b/kytypablo-7bcf6.appspot.com/o/Comics%2F1710143996604.jpg?alt=media&token=c085c065-0c19-4c63-a925-751882909d42", width: 70, height: 70),
                 Text(text, style: TextStyle(fontSize: fontSize)),
-                TextButton(
-                    onPressed: null,
-                    child: Text("+", style: TextStyle(fontSize: fontSize)))
+
               ],
             )),
       ),

@@ -6,14 +6,16 @@ class KTTextField extends StatelessWidget {
   bool esContrasenia;
   double paddingH;
   double paddingV;
+  String rutaImagen;
 
   KTTextField(
       {Key? key,
       this.sHint = "",
       required this.tecController,
+      required this.rutaImagen,
       this.esContrasenia = false,
-      this.paddingH=60,
-      this.paddingV=16})
+      this.paddingH = 60,
+      this.paddingV = 16})
       : super(key: key);
 
   @override
@@ -23,7 +25,7 @@ class KTTextField extends StatelessWidget {
         child: Row(
           children: [
             Image.asset(
-              "resources/cambiame1.png",
+              rutaImagen,
               width: 50,
               height: 50,
             ),

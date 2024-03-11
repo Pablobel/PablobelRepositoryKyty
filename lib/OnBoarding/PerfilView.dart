@@ -21,7 +21,7 @@ class PerfilView extends StatelessWidget {
     String uidUsuario = FirebaseAuth.instance.currentUser!.uid;
     await db.collection("Usuarios").doc(uidUsuario).set(usuario.toFirestore());
 
-    Navigator.of(_context).popAndPushNamed("/homeview");
+    Navigator.of(_context).popAndPushNamed("/categoriasview");
   }
 
   void onClickCancelar() {}
@@ -41,8 +41,16 @@ class PerfilView extends StatelessWidget {
                 minWidth: 500, minHeight: 700, maxWidth: 1000, maxHeight: 1400),
             child: Column(
               children: [
-                KTTextField(tecController: tecNombre, sHint: "Nombre"),
-                KTTextField(tecController: tecApellidos, sHint: "Apellidos"),
+                Text("Dinos algo sobre ti",
+                    style: TextStyle(fontSize: 25)),
+                KTTextField(
+                    tecController: tecNombre,
+                    sHint: "Nombre",
+                    rutaImagen: "resources/tienda.png"),
+                KTTextField(
+                    tecController: tecApellidos,
+                    sHint: "Apellidos",
+                    rutaImagen: "resources/tienda.png"),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

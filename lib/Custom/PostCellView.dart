@@ -5,15 +5,18 @@ class PostCellView extends StatelessWidget {
   final int colorCode;
   final double fontSize;
   final int posicion;
-  final Function(int indice)botonItemLista;
+  final Function(int indice) botonItemLista;
+  final String rutaImagen;
 
-  const PostCellView(
-      {super.key,
-      required this.text,
-      required this.colorCode,
-      required this.fontSize,
-      required this.posicion,
-      required this.botonItemLista});
+  const PostCellView({
+    super.key,
+    required this.text,
+    required this.colorCode,
+    required this.fontSize,
+    required this.posicion,
+    required this.botonItemLista,
+    required this.rutaImagen,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,15 +25,11 @@ class PostCellView extends StatelessWidget {
           color: Colors.amber[colorCode],
           child: Row(
             children: [
-              Image.asset("resources/cambiame1.png", width: 30, height: 45),
+              Image.asset(rutaImagen, width: 30, height: 45),
               Text(text, style: TextStyle(fontSize: fontSize)),
-              TextButton(
-                  onPressed: null,
-                  child: Text("ver", style: TextStyle(fontSize: fontSize)))
             ],
-          )
-      ),
-      onTap: (){
+          )),
+      onTap: () {
         botonItemLista(posicion);
       },
     );

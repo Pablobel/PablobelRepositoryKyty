@@ -19,6 +19,13 @@ class _HomeViewState extends State<HomeView> {
   final List<FBPost> articulos = [];
   bool isList = false;
   late String categoria;
+  final List<String> imagenCategorias = [
+    "comics",
+    "tomos",
+    "magic",
+    "yugioh",
+    "juegosretro"
+  ];
 
   void onBottonMenuPressed(int indice) {
     if (indice == 0) {
@@ -29,6 +36,8 @@ class _HomeViewState extends State<HomeView> {
       setState(() {
         isList = false;
       });
+    }else if(indice == 2){
+      Navigator.of(context).pushNamed('/categoriasview');
     }
   }
 
@@ -91,6 +100,7 @@ class _HomeViewState extends State<HomeView> {
       fontSize: 20,
       posicion: index,
       botonItemLista: botonItemLista,
+      rutaImagen: "resources/" + imagenCategorias[index] + ".png",
     );
   }
 
@@ -104,13 +114,15 @@ class _HomeViewState extends State<HomeView> {
   }
 
   Widget? creadorDeItemMatriz(BuildContext context, int index) {
+    print(articulos[index].urlImagen);
     return PostGridCellView(
       text: articulos[index].nombre,
-      fontSize: 60,
+      fontSize: 15,
       colorCode: 0,
       height: 200,
       posicion: index,
       botonItemMatriz: botonItemLista,
+      urlImagen: articulos[index].urlImagen,
     );
   }
 

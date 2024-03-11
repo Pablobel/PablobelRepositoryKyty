@@ -4,14 +4,27 @@ import 'package:kytypablo/Singletone/DataHolder.dart';
 import '../Custom/PostCellView.dart';
 
 class CategoriasView extends StatelessWidget {
-  final List<String> categorias = ["Comics","Tomos","Magic","Yu-Gi-Oh","Juegos Retro"];
+  final List<String> categorias = [
+    "Comics",
+    "Tomos",
+    "Magic",
+    "Yu-Gi-Oh",
+    "Juegos Retro"
+  ];
+  final List<String> imagenCategorias = [
+    "comics",
+    "tomos",
+    "magic",
+    "yugioh",
+    "juegosretro"
+  ];
   late BuildContext _context;
 
   @override
   Widget build(BuildContext context) {
     _context = context;
     return Scaffold(
-      appBar: AppBar(title: Text("FRIKEANDO")),
+      appBar: AppBar(title: Text("!FRIKEANDO¡ ¡Tu tienda de confianza!")),
       body: Center(
         child: cargarCategorias(),
       ),
@@ -34,6 +47,7 @@ class CategoriasView extends StatelessWidget {
       fontSize: 20,
       posicion: index,
       botonItemLista: botonItemLista,
+      rutaImagen: "resources/" + imagenCategorias[index] + ".png",
     );
   }
 
@@ -47,7 +61,7 @@ class CategoriasView extends StatelessWidget {
   }
 
   void botonItemLista(int indice) {
-    DataHolder().categoria=indice;
+    DataHolder().categoria = indice;
     print(indice);
     Navigator.of(_context).pushNamed("/homeview");
   }

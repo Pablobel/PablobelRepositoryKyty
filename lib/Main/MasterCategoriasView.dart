@@ -4,7 +4,20 @@ import 'package:kytypablo/Singletone/DataHolder.dart';
 import '../Custom/PostCellView.dart';
 
 class MasterCategoriasView extends StatelessWidget {
-  final List<String> categorias = ["Comics","Tomos","Magic","Yu-Gi-Oh","Juegos Retro"];
+  final List<String> categorias = [
+    "Comics",
+    "Tomos",
+    "Magic",
+    "Yu-Gi-Oh",
+    "Juegos Retro"
+  ];
+  final List<String> imagenCategorias = [
+    "comics",
+    "tomos",
+    "magic",
+    "yugioh",
+    "juegosretro"
+  ];
   late BuildContext _context;
 
   @override
@@ -34,6 +47,7 @@ class MasterCategoriasView extends StatelessWidget {
       fontSize: 20,
       posicion: index,
       botonItemLista: botonItemLista,
+      rutaImagen: "resources/" + imagenCategorias[index] + ".png",
     );
   }
 
@@ -47,7 +61,7 @@ class MasterCategoriasView extends StatelessWidget {
   }
 
   void botonItemLista(int indice) {
-    DataHolder().categoria=indice;
+    DataHolder().categoria = indice;
     print(indice);
     Navigator.of(_context).pushNamed("/masterhomeview");
     print("soy master");

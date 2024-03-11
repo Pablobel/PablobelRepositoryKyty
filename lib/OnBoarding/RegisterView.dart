@@ -46,16 +46,16 @@ class RegisterView extends StatelessWidget {
     _context = context;
     Column columna = Column(
       children: [
-        Text("Kyty Register", style: TextStyle(fontSize: 25)),
-        KTTextField(tecController: userNameController, sHint: 'Usuario'),
+        Text("¡Regístrate y vuelve a tu infancia!", style: TextStyle(fontSize: 25)),
+        KTTextField(tecController: userNameController, sHint: 'Usuario',rutaImagen: "resources/tienda.png"),
         KTTextField(
             tecController: passwordController,
             sHint: 'Contraseña',
-            esContrasenia: true),
+            esContrasenia: true,rutaImagen: "resources/tienda.png"),
         KTTextField(
             tecController: repitePasswordController,
             sHint: 'Repetir contraseña',
-            esContrasenia: true),
+            esContrasenia: true,rutaImagen: "resources/tienda.png"),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

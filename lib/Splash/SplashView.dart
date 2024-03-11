@@ -37,7 +37,7 @@ class _SplashViewState extends State<SplashView> {
 
       if (usuario != null) {
         if (uidUsuario == uidMaster) {
-          Navigator.of(context).popAndPushNamed("/masterhomeview");
+          Navigator.of(context).popAndPushNamed("/mastercategoriasview");
           print("soy master");
         } else {
           Navigator.of(context).popAndPushNamed("/categoriasview");
@@ -55,9 +55,9 @@ class _SplashViewState extends State<SplashView> {
     Column columna = Column(
       children: [
         Image.asset(
-          "resources/cambiame1.png",
-          width: 300,
-          height: 150,
+          "resources/tienda.png",
+          width: 600,
+          height: 350,
         ),
         CircularProgressIndicator()
       ],

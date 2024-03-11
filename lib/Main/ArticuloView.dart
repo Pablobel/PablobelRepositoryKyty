@@ -11,7 +11,7 @@ class ArticuloView extends StatelessWidget {
         body: Column(
           children: [
             Text(DataHolder().selectedPost.descripcion),
-            Image.asset("resources/cambiame1.png", width: 30, height: 45),
+            Image.network(DataHolder().selectedPost.urlImagen, width: 30, height: 45),
             TextButton(onPressed: null, child: Text("Comprar"))
           ],
         ));

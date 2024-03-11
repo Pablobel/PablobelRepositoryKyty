@@ -24,7 +24,7 @@ class BottomMenu extends StatelessWidget {
           )),
       TextButton(
           onPressed: () => onBottonMenuPressed!(2),
-          child: Image.asset("resources/cambiame1.png", width: 30, height: 45))
+          child: Image.asset("resources/tienda.png", width: 30, height: 45))
     ]);
   }
 }

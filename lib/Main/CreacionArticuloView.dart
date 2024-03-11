@@ -56,12 +56,12 @@ class _CreacionArticuloViewState extends State<CreacionArticuloView> {
         ),
         body: Column(
           children: [
-            KTTextField(tecController: titulo, sHint: 'Escribe título'),
-            KTTextField(tecController: descripcion, sHint: 'Decripción'),
-            KTTextField(tecController: precio, sHint: '0.0'),
+            KTTextField(tecController: titulo, sHint: 'Título',rutaImagen: "resources/tienda.png"),
+            KTTextField(tecController: descripcion, sHint: 'Descripción',rutaImagen: "resources/tienda.png"),
+            KTTextField(tecController: precio, sHint: 'Precio',rutaImagen: "resources/tienda.png"),
             _imagePreview != null
                 ? Image.memory(_imagePreview!, width: 100, height: 100)
-                : Image.asset('resources/cambiame1.png',
+                : Image.asset('resources/tienda.png',
                     width: 100, height: 100),
             Row(children: [
               TextButton(onPressed: onGalleryClicked, child: Text("Galería")),
@@ -79,13 +79,13 @@ class _CreacionArticuloViewState extends State<CreacionArticuloView> {
 
   void subirArchivo() async {
     final storageRef = FirebaseStorage.instance.ref();
-    //final metadata = SettableMetadata(contentType:"image/jpeg");
+    final metadata = SettableMetadata(contentType:"image/jpeg");
     final rutaAFicheroEnNube = storageRef.child(categorias[categoria] +
         "/" +
         DateTime.now().millisecondsSinceEpoch.toString() +
         ".jpg");
     if (_imagePreview != null) {
-      await rutaAFicheroEnNube.putData(_imagePreview!);
+      await rutaAFicheroEnNube.putData(_imagePreview!,metadata);
       urlImagen = await rutaAFicheroEnNube.getDownloadURL();
       FBPost nuevoArticulo = new FBPost(
           nombre: titulo.text,

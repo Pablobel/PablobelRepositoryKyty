@@ -23,10 +23,10 @@ class LoginView extends StatelessWidget {
       /*DocumentSnapshot<Map<String, dynamic>> datos =
           await db.collection("Usuarios").doc(uidUsuario).get();*/
       DocumentReference<FBUsuario> ref =
-          db.collection("Usuarios").doc(uidUsuario).withConverter(
-                fromFirestore: FBUsuario.fromFirestore,
-                toFirestore: (FBUsuario usuario, _) => usuario.toFirestore(),
-              );
+      db.collection("Usuarios").doc(uidUsuario).withConverter(
+        fromFirestore: FBUsuario.fromFirestore,
+        toFirestore: (FBUsuario usuario, _) => usuario.toFirestore(),
+      );
       DocumentSnapshot<FBUsuario> docSnap = await ref.get();
       FBUsuario? usuario = docSnap.data();
 
@@ -54,11 +54,15 @@ class LoginView extends StatelessWidget {
     _context = context;
     Column columna = Column(
       children: [
-        Text("Kyty Login", style: TextStyle(fontSize: 25)),
-        KTTextField(tecController: userNameController, sHint: 'Usuario'),
+        Text(
+            "¿Tienes una cuenta con nosotros?", style: TextStyle(fontSize: 25)),
+        KTTextField(tecController: userNameController,
+          sHint: 'Usuario',
+          rutaImagen: "resources/tienda.png",),
         KTTextField(
             tecController: passwordController,
             sHint: 'Contraseña',
+            rutaImagen: "resources/tienda.png",
             esContrasenia: true),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
