@@ -1,18 +1,34 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:kytypablo/Singletone/DataHolder.dart';
 import '../Custom/KTTextField.dart';
 import '../FirestoreObjects/FBUsuario.dart';
 
 class PerfilView extends StatelessWidget {
   TextEditingController tecNombre = TextEditingController();
   TextEditingController tecApellidos = TextEditingController();
+  TextEditingController tecDireccion = TextEditingController();
   FirebaseFirestore db = FirebaseFirestore.instance;
   late BuildContext _context;
+  double longitud = 0;
+  double latitud = 0;
 
   void onClickAceptar() async {
-    FBUsuario usuario =
-        new FBUsuario(nombre: tecNombre.text, apellidos: tecApellidos.text);
+    bool calcularCoordenadas = await preguntaCoordenadas();
+    if(calcularCoordenadas){
+      Position pos = await DataHolder().geolocAdmin.determinePosition();
+      latitud = pos.latitude;
+      longitud = pos.longitude;
+    }
+    FBUsuario usuario = new FBUsuario(
+        nombre: tecNombre.text,
+        apellidos: tecApellidos.text,
+        direccion: tecDireccion.text,
+        latitud: latitud,
+        longitud: longitud);
+
     /*final usuario = <String, dynamic>{
       "nombre": tecNombre.text,
       "apellidos": tecApellidos.text
@@ -41,8 +57,7 @@ class PerfilView extends StatelessWidget {
                 minWidth: 500, minHeight: 700, maxWidth: 1000, maxHeight: 1400),
             child: Column(
               children: [
-                Text("Dinos algo sobre ti",
-                    style: TextStyle(fontSize: 25)),
+                Text("Dinos algo sobre ti", style: TextStyle(fontSize: 25)),
                 KTTextField(
                     tecController: tecNombre,
                     sHint: "Nombre",
@@ -50,6 +65,10 @@ class PerfilView extends StatelessWidget {
                 KTTextField(
                     tecController: tecApellidos,
                     sHint: "Apellidos",
+                    rutaImagen: "resources/tienda.png"),
+                KTTextField(
+                    tecController: tecDireccion,
+                    sHint: "Escriba aquí su dirección",
                     rutaImagen: "resources/tienda.png"),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -66,5 +85,28 @@ class PerfilView extends StatelessWidget {
                 )
               ],
             )));
+  }
+
+  Future<bool> preguntaCoordenadas() async {
+    bool resultado = await showDialog(
+      context: _context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Compartir Ubicación"),
+          content: Text("¿Desea compartir sus coordenadas también?"),
+          actions: <Widget>[
+            TextButton(
+              child: Text("Rechazar"),
+              onPressed: () => Navigator.of(context).pop(false), // Devuelve false
+            ),
+            TextButton(
+              child: Text("Aceptar"),
+              onPressed: () => Navigator.of(context).pop(true), // Devuelve true
+            ),
+          ],
+        );
+      },
+    );
+    return resultado ?? false; // Asegúrate de manejar el caso null (por ejemplo, si el diálogo se cierra de alguna otra manera)
   }
 }
