@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:kytypablo/FirestoreObjects/FBUsuario.dart';
+import 'package:kytypablo/Singletone/DataHolder.dart';
 
 class SplashView extends StatefulWidget {
   @override
@@ -56,8 +57,8 @@ class _SplashViewState extends State<SplashView> {
       children: [
         Image.asset(
           "resources/tienda.png",
-          width: 600,
-          height: 350,
+          width: DataHolder().platformAdmin.getScreenWidth()*0.4,
+          height: DataHolder().platformAdmin.getScreenHeight()*0.4,
         ),
         CircularProgressIndicator()
       ],

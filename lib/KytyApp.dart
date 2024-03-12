@@ -3,6 +3,7 @@ import 'package:kytypablo/Main/ArticuloView.dart';
 import 'package:kytypablo/Main/CategoriasView.dart';
 import 'package:kytypablo/Main/MasterCategoriasView.dart';
 import 'package:kytypablo/Main/MasterHomeView.dart';
+import 'package:kytypablo/Singletone/DataHolder.dart';
 import 'Main/CreacionArticuloView.dart';
 import 'Main/HomeView.dart';
 import 'Main/TemperaturasView.dart';
@@ -17,6 +18,7 @@ class KytyApp extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+    DataHolder().initPlatformAdmin(context);
     MaterialApp materialApp=MaterialApp(title: "KyTy Miau!",
       routes: {
         '/loginview':(context) => LoginView(),
