@@ -74,6 +74,7 @@ flutter:
      - resources/yugioh.png
      - resources/magic.png
      - resources/juegosretro.png
+     - resources/temperaturas.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -5,6 +5,7 @@ import 'package:kytypablo/Main/MasterCategoriasView.dart';
 import 'package:kytypablo/Main/MasterHomeView.dart';
 import 'Main/CreacionArticuloView.dart';
 import 'Main/HomeView.dart';
+import 'Main/TemperaturasView.dart';
 import 'OnBoarding/LoginView.dart';
 import 'OnBoarding/PerfilView.dart';
 import 'OnBoarding/PhoneView.dart';
@@ -29,6 +30,7 @@ class KytyApp extends StatelessWidget{
         '/masterhomeview':(context)=> MasterHomeView(),
         '/mastercategoriasview':(context)=> MasterCategoriasView(),
         '/phoneview':(context)=> PhoneView(),
+        '/temperaturasview':(context)=> TemperaturasView(),
       },
       initialRoute: '/splashview',
     );

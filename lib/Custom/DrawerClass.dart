@@ -27,8 +27,8 @@ class DrawerClass extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: Icon(Icons.accessible_forward_rounded, color: Colors.red),
-            title: const Text('Próximamente'),
+            leading: Image.asset('resources/temperaturas.png'),
+            title: const Text('Temperaturas del mundo'),
             onTap: () {
               onItemTap!(1);
             },

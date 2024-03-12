@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:kytypablo/Custom/PostCellView.dart';
 import '../Custom/BottomMenu.dart';
 import '../Custom/DrawerClass.dart';
@@ -51,7 +50,9 @@ class _HomeViewState extends State<HomeView> {
         MaterialPageRoute(builder: (BuildContext context) => LoginView()),
         ModalRoute.withName('/loginview'),
       );
-    } else if (indice == 1) {}
+    } else if (indice == 1) {
+      Navigator.of(context).pushNamed("/temperaturasview");
+    }
   }
 
   @override
@@ -59,13 +60,6 @@ class _HomeViewState extends State<HomeView> {
     super.initState();
     compruebaCategoria();
     descargarPost();
-    loadGeoLocator();
-    DataHolder().httpAdmin.pedirTiempoEn(40.42, 3.53);
-  }
-
-  void loadGeoLocator() async {
-    Position pos = await DataHolder().geolocAdmin.determinePosition();
-    print(pos);
   }
 
   void compruebaCategoria() {
@@ -121,7 +115,6 @@ class _HomeViewState extends State<HomeView> {
   }
 
   Widget? creadorDeItemMatriz(BuildContext context, int index) {
-    print(articulos[index].urlImagen);
     return PostGridCellView(
       text: articulos[index].nombre,
       fontSize: 15,
