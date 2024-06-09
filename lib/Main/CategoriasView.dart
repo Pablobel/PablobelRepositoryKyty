@@ -24,7 +24,12 @@ class CategoriasView extends StatelessWidget {
   Widget build(BuildContext context) {
     _context = context;
     return Scaffold(
-      appBar: AppBar(title: Text("!FRIKEANDO¡ ¡Tu tienda de confianza!")),
+      appBar: AppBar(
+        title: const Text('!FRIKEANDO¡ ¡Tu tienda de confianza!'),
+        centerTitle: true,
+        shadowColor: Colors.black,
+        backgroundColor: Colors.lightBlueAccent,
+      ),
       body: Center(
         child: cargarCategorias(),
       ),
@@ -44,7 +49,7 @@ class CategoriasView extends StatelessWidget {
     return PostCellView(
       text: categorias[index],
       colorCode: 0,
-      fontSize: 20,
+      fontSize: 40,
       posicion: index,
       botonItemLista: botonItemLista,
       rutaImagen: "resources/" + imagenCategorias[index] + ".png",

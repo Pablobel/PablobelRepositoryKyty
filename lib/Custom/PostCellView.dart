@@ -25,10 +25,15 @@ class PostCellView extends StatelessWidget {
           color: Colors.amber[colorCode],
           child: Row(
             children: [
-              Image.asset(rutaImagen, width: 30, height: 45),
-              Text(text, style: TextStyle(fontSize: fontSize)),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 10),
+              child:Image.asset(rutaImagen, width: 100, height: 100),),
+              Container(
+                  margin: EdgeInsets.symmetric(horizontal: 10),
+              child: Text(text, style: TextStyle(fontSize: fontSize))),
             ],
-          )),
+          ),
+      ),
       onTap: () {
         botonItemLista(posicion);
       },
