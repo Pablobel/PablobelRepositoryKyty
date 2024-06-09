@@ -46,7 +46,9 @@ class PerfilView extends StatelessWidget {
     Navigator.of(_context).popAndPushNamed("/categoriasview");
   }
 
-  void onClickCancelar() {}
+  void onClickCancelar() {
+    Navigator.of(_context).popAndPushNamed("/loginview");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,12 +60,43 @@ class PerfilView extends StatelessWidget {
           shadowColor: Colors.black,
           backgroundColor: Colors.blue,
         ),
-        body: ConstrainedBox(
-            constraints: BoxConstraints(
-                minWidth: 500, minHeight: 700, maxWidth: 1000, maxHeight: 1400),
-            child: Column(
+        body:
+             Column(
               children: [
-                Text("Dinos algo sobre ti", style: TextStyle(fontSize: 25)),
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8), // Añade separación entre el borde y el texto
+                  decoration: BoxDecoration(
+                    color: Colors.tealAccent, // Fondo blanco
+                    borderRadius: BorderRadius.circular(12), // Bordes redondeados
+                    border: Border.all(color: Colors.indigo, width: 2), // Borde negro
+                  ),
+                  child: Text(
+                    "¡Dinos algo sobre ti!",
+                    style: TextStyle(
+                      fontSize: 35,
+                      color: Colors.black, // Color del texto
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 75, vertical: 20),
+                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8), // Añade separación entre el borde y el texto
+                  decoration: BoxDecoration(
+                    color: Colors.yellow, // Fondo blanco
+                    borderRadius: BorderRadius.circular(12), // Bordes redondeados
+                    border: Border.all(color: Colors.red, width: 2), // Borde negro
+                  ),
+                  child: Text(
+                    "Ahora puedes dejar los campos sin rellenar. Pero ten en cuenta que si deseas comprar algún artículo en algún momento "
+                        "serán necesarios los siguientes datos para que podamos enviarte el artículo. Si deseas hacerlo más adelante no olvides ir a tu perfil y rellenar "
+                        "los campos que falten.",
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.black, // Color del texto
+                    ),
+                  ),
+                ),
                 KTTextField(
                     tecController: tecNombre,
                     sHint: "Nombre",
@@ -91,18 +124,46 @@ class PerfilView extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    TextButton(
-                      onPressed: onClickAceptar,
-                      child: Text("Aceptar"),
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      decoration: BoxDecoration(
+                        color: Colors.lightGreenAccent,
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(color: Colors.blue, width: 2),
+                      ),
+                      child: TextButton(
+                        onPressed: onClickAceptar,
+                        child: Text(
+                          "ACEPTAR",
+                          style: TextStyle(
+                              color: Colors.indigo,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
                     ),
-                    TextButton(
-                      onPressed: onClickCancelar,
-                      child: Text("Cancelar"),
-                    )
+                    SizedBox(width: 10), // Espacio entre los botones
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      decoration: BoxDecoration(
+                        color: Colors.lightGreenAccent,
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(color: Colors.blue, width: 2),
+                      ),
+                      child: TextButton(
+                        onPressed: onClickCancelar,
+                        child: Text(
+                          "CANCELAR",
+                          style: TextStyle(
+                              color: Colors.indigo,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
                   ],
                 )
               ],
-            )));
+            )
+    );
   }
 
   Future<bool> preguntaCoordenadas() async {
