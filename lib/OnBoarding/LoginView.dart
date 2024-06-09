@@ -9,7 +9,7 @@ class LoginView extends StatelessWidget {
   TextEditingController userNameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   FirebaseFirestore db = FirebaseFirestore.instance;
-  String uidMaster = "qhM2QOZ8EbXMIZofeFGXT2AyUa13";
+  String uidMaster = "i8Hc99Mx3BRJCQNcjq1WbWazSec2";
 
   void onClickRegistrar() {
     Navigator.of(_context).pushNamed("/registerview");
@@ -52,44 +52,98 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     _context = context;
-    Column columna = Column(
-      children: [
-        Text(
-            "¿Tienes una cuenta con nosotros?", style: TextStyle(fontSize: 25)),
-        KTTextField(tecController: userNameController,
-          sHint: 'Usuario',
-          rutaImagen: "resources/tienda.png",),
-        KTTextField(
-            tecController: passwordController,
-            sHint: 'Contraseña',
-            rutaImagen: "resources/tienda.png",
-            esContrasenia: true),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextButton(
-              onPressed: onClickAceptar,
-              child: Text("Aceptar"),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Login'),
+        centerTitle: true,
+        shadowColor: Colors.black,
+        backgroundColor: Colors.blue,
+      ),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('resources/tienda.png'),
+            fit: BoxFit.cover,
+            opacity: 0.6,
+          ),
+        ),
+        child: Center(
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8), // Añade separación entre el borde y el texto
+                  decoration: BoxDecoration(
+                    color: Colors.tealAccent, // Fondo blanco
+                    borderRadius: BorderRadius.circular(12), // Bordes redondeados
+                    border: Border.all(color: Colors.black, width: 2), // Borde negro
+                  ),
+                  child: Text(
+                    "¿Tienes una cuenta con nosotros?",
+                    style: TextStyle(
+                      fontSize: 25,
+                      color: Colors.black, // Color del texto
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20), // Espaciado entre los elementos
+                KTTextField(
+                  tecController: userNameController,
+                  sHint: 'Usuario',
+                  rutaImagen: "resources/tienda.png",
+                ),
+                KTTextField(
+                  tecController: passwordController,
+                  sHint: 'Contraseña',
+                  rutaImagen: "resources/tienda.png",
+                  esContrasenia: true,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      decoration: BoxDecoration(
+                        color: Colors.lightGreenAccent,
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(color: Colors.blue, width: 2),
+                      ),
+                      child: TextButton(
+                        onPressed: onClickAceptar,
+                        child: Text(
+                          "ACEPTAR",
+                          style: TextStyle(
+                              color: Colors.indigo,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 10), // Espacio entre los botones
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      decoration: BoxDecoration(
+                        color: Colors.lightGreenAccent,
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(color: Colors.blue, width: 2),
+                      ),
+                      child: TextButton(
+                        onPressed: onClickRegistrar,
+                        child: Text(
+                          "REGISTRAR",
+                          style: TextStyle(
+                              color: Colors.indigo,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
-            TextButton(
-              onPressed: onClickRegistrar,
-              child: Text("Registrar"),
-            )
-          ],
-        )
-      ],
+          ),
+        ),
+      ),
     );
-    AppBar appBar = AppBar(
-      title: const Text('Login'),
-      centerTitle: true,
-      shadowColor: Colors.black,
-      backgroundColor: Colors.blue,
-    );
-    Scaffold scaf = Scaffold(
-      body: columna,
-      appBar: appBar,
-    );
-
-    return scaf;
   }
 }

@@ -9,7 +9,10 @@ import '../FirestoreObjects/FBUsuario.dart';
 class PerfilView extends StatelessWidget {
   TextEditingController tecNombre = TextEditingController();
   TextEditingController tecApellidos = TextEditingController();
-  TextEditingController tecDireccion = TextEditingController();
+  TextEditingController tecCodigoPostal = TextEditingController();
+  TextEditingController tecPoblacion = TextEditingController();
+  TextEditingController tecCiudad = TextEditingController();
+  TextEditingController tecCalle = TextEditingController();
   FirebaseFirestore db = FirebaseFirestore.instance;
   late BuildContext _context;
   double longitud = 0;
@@ -25,7 +28,10 @@ class PerfilView extends StatelessWidget {
     FBUsuario usuario = new FBUsuario(
         nombre: tecNombre.text,
         apellidos: tecApellidos.text,
-        direccion: tecDireccion.text,
+        codigoPostal: tecCodigoPostal.text,
+        poblacion: tecPoblacion.text,
+        ciudad: tecCiudad.text,
+        calle: tecCalle.text,
         latitud: latitud,
         longitud: longitud);
 
@@ -67,8 +73,20 @@ class PerfilView extends StatelessWidget {
                     sHint: "Apellidos",
                     rutaImagen: "resources/tienda.png"),
                 KTTextField(
-                    tecController: tecDireccion,
-                    sHint: "Escriba aquí su dirección",
+                    tecController: tecCodigoPostal,
+                    sHint: "Código Postal",
+                    rutaImagen: "resources/tienda.png"),
+                KTTextField(
+                    tecController: tecPoblacion,
+                    sHint: "Población",
+                    rutaImagen: "resources/tienda.png"),
+                KTTextField(
+                    tecController: tecCiudad,
+                    sHint: "Ciudad",
+                    rutaImagen: "resources/tienda.png"),
+                KTTextField(
+                    tecController: tecCalle,
+                    sHint: "Calle y número",
                     rutaImagen: "resources/tienda.png"),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
