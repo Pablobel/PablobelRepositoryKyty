@@ -57,7 +57,7 @@ class LoginView extends StatelessWidget {
         title: const Text('Login'),
         centerTitle: true,
         shadowColor: Colors.black,
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.lightBlueAccent,
       ),
       body: Container(
         decoration: BoxDecoration(
