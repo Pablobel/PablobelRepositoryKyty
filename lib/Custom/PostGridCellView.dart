@@ -26,7 +26,7 @@ class PostGridCellView extends StatelessWidget {
       child: FractionallySizedBox(
         child: Container(
             margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
                 image: DecorationImage(
                     opacity: 0.2,
                     image: NetworkImage("resources/tienda.png"),
@@ -34,7 +34,7 @@ class PostGridCellView extends StatelessWidget {
             color: Colors.amber[colorCode],
             child: Column(
               children: [
-                Image.network("https://firebasestorage.googleapis.com/v0/b/kytypablo-7bcf6.appspot.com/o/Comics%2F1710143996604.jpg?alt=media&token=c085c065-0c19-4c63-a925-751882909d42", width: 70, height: 70),
+                Image.network(urlImagen, width: 70, height: 70),
                 Text(text, style: TextStyle(fontSize: fontSize)),
 
               ],

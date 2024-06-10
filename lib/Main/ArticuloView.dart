@@ -31,9 +31,8 @@ class ArticuloView extends StatelessWidget {
           border: Border.all(
               color: Colors.black26, width: 2),
         ),
-                  child: Image.asset('resources/tienda.png',
-                      width: 400, height: 400)),
-              //Image.network(DataHolder().selectedPost.urlImagen, width: 100, height: 100),
+                  child:
+              Image.network(DataHolder().selectedPost.urlImagen, width: 400, height: 400)),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 75, vertical: 20),
                 padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
