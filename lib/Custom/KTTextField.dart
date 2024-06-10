@@ -24,10 +24,25 @@ class KTTextField extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: paddingH, vertical: paddingV),
         child: Row(
           children: [
-            Image.asset(
-              rutaImagen,
-              width: 50,
-              height: 50,
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                // Ajusta el radio de los bordes redondeados según tus necesidades
+                border: Border.all(
+                  color: Colors.black, // Color del borde
+                  width: 2, // Ancho del borde
+                ),
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                // Asegúrate de que el borde redondeado también se aplica a la imagen
+                child: Image.asset(
+                  rutaImagen,
+                  width: 50,
+                  height: 50,
+                ),
+              ),
             ),
             Flexible(
                 child: TextFormField(
