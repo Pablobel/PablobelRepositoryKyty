@@ -52,7 +52,10 @@ class _CreacionArticuloViewState extends State<CreacionArticuloView> {
   Widget build(BuildContext cotext) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(DataHolder().nombre),
+          title: const Text('Login'),
+          centerTitle: true,
+          shadowColor: Colors.black,
+          backgroundColor: Colors.lightBlueAccent,
         ),
         body: Column(
           children: [

@@ -23,7 +23,7 @@ class _SplashViewState extends State<SplashView> {
   }
 
   void checkSession() async {
-    await Future.delayed(Duration(seconds: 5));
+    await Future.delayed(Duration(seconds: 3));
     if (FirebaseAuth.instance.currentUser != null) {
       String uidUsuario = FirebaseAuth.instance.currentUser!.uid;
       /*DocumentSnapshot<Map<String, dynamic>> datos =

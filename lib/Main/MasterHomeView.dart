@@ -50,7 +50,9 @@ class _MasterHomeViewState extends State<MasterHomeView> {
         MaterialPageRoute(builder: (BuildContext context) => LoginView()),
         ModalRoute.withName('/loginview'),
       );
-    } else if (indice == 1) {}
+    } else if (indice == 1) {
+      Navigator.of(context).pushNamed("/temperaturasview");
+    }
   }
 
   @override
@@ -99,7 +101,7 @@ class _MasterHomeViewState extends State<MasterHomeView> {
       fontSize: 20,
       posicion: index,
       botonItemLista: botonItemLista,
-      rutaImagen: "resources/" + imagenCategorias[index] + ".png",
+      rutaImagen: "resources/" + imagenCategorias[DataHolder().categoria] + ".png",
     );
   }
 
@@ -115,7 +117,7 @@ class _MasterHomeViewState extends State<MasterHomeView> {
   Widget? creadorDeItemMatriz(BuildContext context, int index) {
     return PostGridCellView(
       text: articulos[index].nombre,
-      fontSize: 60,
+      fontSize: 15,
       colorCode: 0,
       height: 200,
       posicion: index,
@@ -127,7 +129,12 @@ class _MasterHomeViewState extends State<MasterHomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("FRIKEANDO")),
+      appBar: AppBar(
+        title:  Text(categoria),
+        centerTitle: true,
+        shadowColor: Colors.black,
+        backgroundColor: Colors.lightBlueAccent,
+      ),
       body: Center(
         child: celdasOLista(isList),
       ),
