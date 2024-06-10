@@ -25,6 +25,7 @@ class PostGridCellView extends StatelessWidget {
     return InkWell(
       child: FractionallySizedBox(
         child: Container(
+            margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             decoration: BoxDecoration(
                 image: DecorationImage(
                     opacity: 0.2,
