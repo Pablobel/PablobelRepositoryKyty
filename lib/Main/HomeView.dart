@@ -101,7 +101,7 @@ class _HomeViewState extends State<HomeView> {
       fontSize: 20,
       posicion: index,
       botonItemLista: botonItemLista,
-      rutaImagen: "resources/" + imagenCategorias[index] + ".png",
+      rutaImagen: "resources/" + imagenCategorias[DataHolder().categoria] + ".png",
     );
   }
 
@@ -129,19 +129,18 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("FRIKEANDO")),
+        appBar: AppBar(
+          title:  Text(categoria),
+          centerTitle: true,
+          shadowColor: Colors.black,
+          backgroundColor: Colors.lightBlueAccent,
+        ),
       body: Center(
         child: celdasOLista(isList),
       ),
       bottomNavigationBar:
           BottomMenu(onBottonMenuPressed: this.onBottonMenuPressed),
       drawer: DrawerClass(onItemTap: homeViewDrawerOnTap),
-      floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.of(context).pushNamed('/creacionarticuloview');
-          },
-          child: Icon(Icons.add)),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       /*ListView.separated(
         padding: EdgeInsets.all(80),
         itemCount: articulos.length,
